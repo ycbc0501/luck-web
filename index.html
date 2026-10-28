@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" /><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /><meta name="apple-mobile-web-app-title" content="운 모으기" /><meta name="theme-color" content="#B9A6CB" />
-    <title>Luck 운 모으기</title><meta name="description" content="오늘의 나쁜 운 vs 내가 모은 좋은 운. 사주 기반 운 모으기 앱 웹 미리보기" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>luck</title>
     <!-- The `react-native-web` recommended style reset: https://necolas.github.io/react-native-web/docs/setup/#root-element -->
     <style id="expo-reset">
       /* These styles make the body full-height */
@@ -13,30 +13,23 @@
         height: 100%;
       }
       /* These styles disable body scrolling if you are using <ScrollView> */
-      body { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; overscroll-behavior: none;
-        overflow: hidden; background: #B9A6CB;
+      body {
+        overflow: hidden;
       }
       /* These styles make the root element full-height */
-      #root { margin: 0 auto;
+      #root {
         display: flex;
         height: 100%;
         flex: 1;
       }
-      textarea:focus, input:focus { outline: none; }
-      img { image-rendering: pixelated; }
-      #root div, #root span { word-break: keep-all; overflow-wrap: break-word; }
-      #dev { position: fixed; left: calc(50% + 215px + 16px); top: 16px; display: flex; flex-direction: column; gap: 8px; font: 13px -apple-system, sans-serif; }
-      #dev button { background: #fff; border: 2px solid #5B4432; padding: 8px 12px; cursor: pointer; color: #2F2B37; text-align: left; }
-      #dev button:active { background: #F7DD8F; }
-      @media (max-width: 760px) { #dev { display: none; } }
     </style>
-  <link rel="icon" href="favicon.ico"/></head>
+  <link rel="icon" href="/favicon.ico"/></head>
 
   <body>
     <!-- Use static rendering with Expo Router to support running without JavaScript. -->
     <noscript> You need to enable JavaScript to run this app. </noscript>
     <!-- The root element for your Expo app. -->
-    <button id="devm2" onclick="if(confirm('처음부터 다시 할까요? 생일과 모은 것이 지워져요.'))window.__luckDispatch&&window.__luckDispatch({type:'reset'})" style="position:fixed;right:192px;top:calc(env(safe-area-inset-top) + 9px);z-index:9999;width:34px;height:34px;border-radius:17px;border:2px solid #5B4432;background:rgba(255,248,238,0.92);font-size:15px;line-height:30px;padding:0;text-align:center">⏮</button><div id="root"></div>
-  <script src="expo/static/js/web/index-10c84161f5b915a2671795b9cf971970.js" defer></script>
+    <div id="root"></div>
+  <script src="/_expo/static/js/web/index-9d89573765eb377465e32f54fe0b2d66.js" defer></script>
 </body>
 </html>
