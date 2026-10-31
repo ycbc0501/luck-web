@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>하루운세 초대</title>
+<meta property="og:title" content="친구가 하루운세에 초대했어요">
+<meta property="og:description" content="오늘 하루 운만 제대로 챙기는 사주. 같이 받으면 둘 다 행운 🍀">
+<meta property="og:image" content="https://ycbc0501.github.io/luck-web/share.png">
+<link rel="icon" href="../favicon.ico">
+<style>
+  :root { --paper: #F2D27A; --paper2: #FFF7E0; --ink: #2E2420; --red: #A61C12; --line: #8A6A3C; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: var(--paper); color: var(--ink); font: 16px/1.5 -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; word-break: keep-all; display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
+  main { width: 100%; max-width: 380px; text-align: center; }
+  .mark { font-size: 44px; margin-bottom: 8px; }
+  h1 { font-size: 24px; margin: 0 0 8px; }
+  p { margin: 0 0 20px; color: #5B4432; }
+  .code { background: var(--paper2); border: 2px solid var(--line); border-radius: 14px; padding: 14px; margin-bottom: 20px; }
+  .code small { display: block; color: #8A6A3C; font-size: 13px; }
+  .code b { font-size: 28px; letter-spacing: 3px; color: var(--red); }
+  a.btn { display: block; text-decoration: none; background: var(--ink); color: #fff; border-radius: 14px; padding: 16px; font-weight: 700; font-size: 17px; margin-bottom: 10px; }
+  a.btn.alt { background: var(--paper2); color: var(--ink); border: 2px solid var(--line); }
+  .note { font-size: 13px; color: #8A6A3C; margin-top: 10px; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="mark">🍀</div>
+  <h1>친구가 하루운세에<br>초대했어요</h1>
+  <p>앱을 받고 첫 화면에서 사주를 만들면<br>둘 다 행운을 받아요.</p>
+  <div class="code" id="codeBox" hidden><small>초대 코드</small><b id="code"></b></div>
+  <a class="btn" id="android" href="#">Google Play에서 받기</a>
+  <a class="btn" id="ios" href="#">App Store에서 받기</a>
+  <div class="note" id="iosNote" hidden>코드를 복사해 둘게요. 첫 화면 초대 코드 칸의 '붙여넣기'를 눌러 주세요.</div>
+</main>
+<script>
+  // 초대 코드가 앱까지 가는 길: 안드로이드는 플레이스토어 referrer로 자동, 아이폰은 복사해 두고 앱에서 붙여넣기(src/inviteSource.ts)
+  var m = /[?&]i=([A-Za-z0-9]{8})(?![A-Za-z0-9])/.exec(location.search);
+  var code = m ? m[1].toLowerCase() : '';
+  var PLAY = 'https://play.google.com/store/apps/details?id=com.baekdutech.luck' + (code ? '&referrer=' + encodeURIComponent('i=' + code) : '');
+  var APPSTORE = 'https://apps.apple.com/app/id6828735878';
+  var ua = navigator.userAgent, isAndroid = /Android/i.test(ua), isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && 'ontouchend' in document);
+  document.getElementById('android').href = PLAY;
+  document.getElementById('ios').href = APPSTORE;
+  if (code) { document.getElementById('code').textContent = code; document.getElementById('codeBox').hidden = false; }
+  if (isAndroid) document.getElementById('ios').hidden = true;
+  if (isIOS) { document.getElementById('android').hidden = true; if (code) document.getElementById('iosNote').hidden = false; }
+  if (!isAndroid && !isIOS) document.getElementById('ios').className = 'btn alt';
+  function copy(t) {
+    try { if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(t); return; } } catch (e) {}
+    var a = document.createElement('textarea'); a.value = t; a.setAttribute('readonly', ''); a.style.position = 'fixed'; a.style.opacity = '0';
+    document.body.appendChild(a); a.select(); try { document.execCommand('copy'); } catch (e) {} document.body.removeChild(a);
+  }
+  document.getElementById('ios').addEventListener('click', function () { if (code) copy('하루운세 초대 코드 ' + code); });
+</script>
+</body>
+</html>
